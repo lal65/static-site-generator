@@ -13,5 +13,6 @@
         "league/commonmark": "^2.4",
         "ext-imagick": "*"
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "bin": ["bin/compile.php"]
 }

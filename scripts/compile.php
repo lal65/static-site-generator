@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 
 use League\CommonMark\Extension\FrontMatter\Data\LibYamlFrontMatterParser;
@@ -13,7 +14,7 @@ use Twig\Loader\FilesystemLoader;
 use Twig\RuntimeLoader\RuntimeLoaderInterface;
 use Twig\TwigFunction;
 
-require_once dirname(__FILE__, 2) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
 
 $loader = new FilesystemLoader(['blocks', 'templates']);
 $loader->addPath('node_modules/@psu-ooe', 'psu-ooe');
