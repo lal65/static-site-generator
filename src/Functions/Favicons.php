@@ -26,7 +26,7 @@ class Favicons {
       file_put_contents('dist' . DIRECTORY_SEPARATOR . $filename, $contents);
     }
     $document = new \DOMDocument('1.0', 'UTF-8');
-    foreach ($generator->headTags($document, $manifest, '/') as $tag) {
+    foreach ($generator->headTags($document, $manifest, '/' . $config['base_path']) as $tag) {
       $tags[] = $document->saveHTML($tag);
     }
     return implode(PHP_EOL, $tags);

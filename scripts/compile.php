@@ -41,15 +41,15 @@ foreach (glob('blocks/*') as $region) {
   }
 }
 
+$context = yaml_parse(file_get_contents('config.yml'));
+
 $frontMatterParser = new FrontMatterParser(new LibYamlFrontMatterParser());
 foreach (glob('pages/*.md') as $page) {
   $content = file_get_contents($page);
   $result = $frontMatterParser->parse($content);
   $frontmatter = $result->getFrontMatter();
-  $context = [
-    'blocks' => $blocks,
-    'content' => $result->getContent(),
-  ];
+  $context['blocks'] = $blocks;
+  $context['content'] = $result->getContent();
 
   if (is_array($frontmatter)) {
     $context += $frontmatter;

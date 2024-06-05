@@ -1,3 +1,4 @@
+base_path: 'static-site-generator'
 site_name: 'Demo Static Site'
 site_description: 'A demonstration of a simple static site.'
 theme_color: '#1e407c'
