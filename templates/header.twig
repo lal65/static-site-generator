@@ -1,0 +1,7 @@
+{% embed '@psu-ooe/header/header.twig' %}
+  {% block dogear_content %}
+    {% for block in blocks['dogear_content'] %}
+      {% autoescape false %}{{ block }}{% endautoescape %}
+    {% endfor %}
+  {% endblock %}
+{% endembed %}

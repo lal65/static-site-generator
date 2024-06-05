@@ -1,0 +1,5 @@
+site_name: 'Demo Static Site'
+site_description: 'A demonstration of a simple static site.'
+theme_color: '#1e407c'
+tile_color: '#1e407c'
+background_color: '#1e407c'

@@ -1,0 +1,17 @@
+{
+    "name": "psu-ooe/static-site-generator",
+    "description": "Provides a simple CMS-less site generator as a service.",
+    "type": "project",
+    "autoload": {
+        "psr-4": { "ooe\\": "src/" }
+    },
+    "require-dev": {
+        "twig/twig": "^3.0",
+        "genkgo/favicon": "^0.3.4",
+        "ext-yaml": "*",
+        "twig/markdown-extra": "^3.10",
+        "league/commonmark": "^2.4",
+        "ext-imagick": "*"
+    },
+    "minimum-stability": "stable"
+}

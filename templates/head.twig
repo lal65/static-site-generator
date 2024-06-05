@@ -1,0 +1,7 @@
+<head>
+  <meta charset="utf-8">
+  <title>{{ get_config('site_name') }} - {{ page_title }}</title>
+  {% autoescape false %}{{ render_favicons() }}{% endautoescape %}
+  {% include '@psu-ooe/webfonts/webfonts.twig' %}
+  {% autoescape false %}<style>{{ get_styles() }}</style>{% endautoescape %}
+</head>
