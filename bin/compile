@@ -5,6 +5,7 @@ use League\CommonMark\Extension\FrontMatter\Data\LibYamlFrontMatterParser;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParser;
 use ooe\Functions\Config;
 use ooe\Functions\Favicons;
+use ooe\Functions\Menus;
 use ooe\Functions\Styles;
 use Twig\Environment;
 use Twig\Extra\Markdown\DefaultMarkdown;
@@ -12,6 +13,7 @@ use Twig\Extra\Markdown\MarkdownExtension;
 use Twig\Extra\Markdown\MarkdownRuntime;
 use Twig\Loader\FilesystemLoader;
 use Twig\RuntimeLoader\RuntimeLoaderInterface;
+use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
@@ -55,13 +57,23 @@ $twig->addRuntimeLoader(new class implements RuntimeLoaderInterface {
   }
 });
 
+$twig->addFilter(new TwigFilter('clean_unique_id', static function($id) {
+  $id = str_replace(' ', '-', $id);
+  return $id . '-' . uniqid();
+}));
+
 $twig->addFunction(new TwigFunction('get_config', Config::class . '::getConfig'));
 $twig->addFunction(new TwigFunction('get_styles', Styles::class . '::getStyles'));
 $twig->addFunction(new TwigFunction('render_favicons', Favicons::class . '::renderFavicons'));
-
+$twig->addFunction(new TwigFunction('get_menu_items', Menus::class . '::getMenuItems'));
 
 $frontMatterParser = new FrontMatterParser(new LibYamlFrontMatterParser());
-foreach (glob('pages/*.md') as $page) {
+
+foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator('pages', FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::SELF_FIRST) as $page) {
+  $dest = 'dist' . DIRECTORY_SEPARATOR . preg_replace('/^pages\//', '', $page->getPathname());
+  if ($page->isDir()) {
+    continue;
+  }
   $content = file_get_contents($page);
   $result = $frontMatterParser->parse($content);
   $frontmatter = $result->getFrontMatter();
@@ -93,6 +105,12 @@ foreach (glob('pages/*.md') as $page) {
       $derivative->writeImage('dist/images/' . $context['page_image'] . '@' . $resolution[0] . 'x' . $resolution[1] . '.webp');
     }
   }
+  echo $dest . PHP_EOL;
 
-  file_put_contents('dist' . DIRECTORY_SEPARATOR . basename($page, '.md') . '.html', $twig->render('page.twig', $context));
+  if (!file_exists(dirname($dest))) {
+    mkdir(dirname($dest), 0777, TRUE);
+    echo 'Made...' . $dest;
+  }
+
+  file_put_contents(preg_replace('/\.md$/', '.html', $dest), $twig->render('page.twig', $context));
 }

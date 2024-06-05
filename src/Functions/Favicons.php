@@ -11,6 +11,8 @@ use Genkgo\Favicon\WebApplicationManifestDisplay;
 class Favicons {
 
   public static function renderFavicons(): string {
+    static $generated = FALSE;
+
     $config = yaml_parse(file_get_contents('config.yml'));
     $generator = FullPackageGenerator::newGenerator();
     $manifest = new WebApplicationManifest(
@@ -21,10 +23,14 @@ class Favicons {
       $config['tile_color']
     );
 
-    $source = Input::fromFile('favicon.svg', InputImageType::SVG);
-    foreach ($generator->package($source, $manifest, '/') as $filename => $contents) {
-      file_put_contents('dist' . DIRECTORY_SEPARATOR . $filename, $contents);
+    if (!$generated) {
+      $source = Input::fromFile('favicon.svg', InputImageType::SVG);
+      foreach ($generator->package($source, $manifest, '/') as $filename => $contents) {
+        file_put_contents('dist' . DIRECTORY_SEPARATOR . $filename, $contents);
+      }
+      $generated = TRUE;
     }
+
     $document = new \DOMDocument('1.0', 'UTF-8');
     foreach ($generator->headTags($document, $manifest, '/' . $config['base_path']) as $tag) {
       $tags[] = $document->saveHTML($tag);

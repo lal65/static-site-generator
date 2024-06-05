@@ -1,0 +1,11 @@
+{{ source('@psu-ooe/sprite/dist/sprites.svg')|raw }}
+<section aria-label="Quick Options">
+  {% include '@psu-ooe/skip-link/skip-link.twig' with {
+    text: 'Skip to main content',
+    target_id: 'main-content',
+  } only %}
+  {% include '@psu-ooe/skip-link/skip-link.twig' with {
+    text: 'Chat with a human',
+    target_id: 'chat',
+  } only %}
+</section>

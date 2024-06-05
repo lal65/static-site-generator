@@ -1,0 +1,7 @@
+{% if blocks['announcements'] %}
+  <section aria-label="Announcements">
+    {% for block in blocks['announcements'] %}
+      {% autoescape false %}{{ block }}{% endautoescape %}
+    {% endfor %}
+  </section>
+{% endif %}
