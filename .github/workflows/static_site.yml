@@ -47,6 +47,8 @@ jobs:
         run: npm ci
       - name: Composer install
         uses: "ramsey/composer-install@v2"
+      - name: Create directories
+        run: mkdir -p dist/images
       - name: Compile assets
         run: php scripts/compile.php
       - name: Setup Pages
