@@ -14,9 +14,11 @@ use Twig\Loader\FilesystemLoader;
 use Twig\RuntimeLoader\RuntimeLoaderInterface;
 use Twig\TwigFunction;
 
-exec('cd vendor/psu-ooe/static-site-generator && npm install');
-
 include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
+
+$vendor_pkg = 'vendor' . DIRECTORY_SEPARATOR . 'psu-ooe' . DIRECTORY_SEPARATOR . 'static-site-generator';
+if (file_exists($vendor_pkg))
+exec("cd $vendor_pkg && npm install");
 
 $paths = array_filter([
   'blocks',
@@ -24,8 +26,20 @@ $paths = array_filter([
   'vendor' . DIRECTORY_SEPARATOR . 'psu-ooe' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'blocks',
   'vendor' . DIRECTORY_SEPARATOR . 'psu-ooe' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'templates',
 ], static fn($path) => file_exists($path));
+
 $loader = new FilesystemLoader($paths);
-$loader->addPath('node_modules/@psu-ooe', 'psu-ooe');
+$paths = array_filter([
+  'node_modules/@psu-ooe',
+  'vendor' . DIRECTORY_SEPARATOR . 'psu-ooe' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'node_modules' . DIRECTORY_SEPARATOR . '@psu-ooe',
+], static fn($path) => file_exists($path));
+
+foreach ($paths as $path) {
+  if (file_exists($path)) {
+    $loader->addPath($path, 'psu-ooe');
+    break;
+  }
+}
+
 $twig = new Environment($loader);
 
 $twig->addExtension(new MarkdownExtension());
