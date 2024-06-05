@@ -105,11 +105,9 @@ foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator('pages', F
       $derivative->writeImage('dist/images/' . $context['page_image'] . '@' . $resolution[0] . 'x' . $resolution[1] . '.webp');
     }
   }
-  echo $dest . PHP_EOL;
 
   if (!file_exists(dirname($dest))) {
     mkdir(dirname($dest), 0777, TRUE);
-    echo 'Made...' . $dest;
   }
 
   file_put_contents(preg_replace('/\.md$/', '.html', $dest), $twig->render('page.twig', $context));
