@@ -8,7 +8,7 @@
       {% autoescape false %}{{ block }}{% endautoescape %}
     {% endfor %}
   </div>
-  <main style="padding: 0 var(--page-side-padding); margin: auto; max-width: 119rem;">
+  <main>
     {% apply markdown_to_html %}
       {{ content }}
     {% endapply %}
