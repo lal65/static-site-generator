@@ -1,9 +1,9 @@
 <html lang="en">
   {% include 'head.twig' %}
-  <body>
+  <body style="display:flex;flex-direction: column;">
   {% include 'body-top.twig' %}
   {% include 'header.twig' %}
-  <div style="max-height: fit-content;margin-bottom:5rem;">
+  <div style="height: fit-content;margin-bottom:5rem">
     {% for block in blocks['before_content'] %}
       {% autoescape false %}{{ block }}{% endautoescape %}
     {% endfor %}
