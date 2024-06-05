@@ -17,7 +17,7 @@ use Twig\TwigFunction;
 include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
 
 if (!file_exists('dist')) {
-  mkdir('dist' . DIRECTORY_SEPARATOR . 'images');
+  mkdir('dist' . DIRECTORY_SEPARATOR . 'images', 0777, TRUE);
 }
 
 $vendor_pkg = 'vendor' . DIRECTORY_SEPARATOR . 'psu-ooe' . DIRECTORY_SEPARATOR . 'static-site-generator';
