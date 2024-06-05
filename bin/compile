@@ -13,6 +13,8 @@ use Twig\Extra\Markdown\MarkdownRuntime;
 use Twig\Loader\FilesystemLoader;
 use Twig\RuntimeLoader\RuntimeLoaderInterface;
 use Twig\TwigFunction;
+echo getcwd();
+passthru('npm install');
 
 include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
 
