@@ -4,7 +4,7 @@
       <source srcset="{{ base_path ? '/' ~ base_path }}/images/{{ page_image }}@1920x1280.webp 1x" media="(min-width:1280px)" type="image/webp" width="1920" height="840">
       <source srcset="{{ base_path ? '/' ~ base_path }}/images/{{ page_image }}@1280x720.webp 1x" media="(min-width:768px)" type="image/webp" width="1280" height="560">
       <source srcset="{{ base_path ? '/' ~ base_path }}/images/{{ page_image }}@768x432.webp 1x" media="(max-width:767px)" type="image/webp" width="768" height="432">
-      <img loading="eager" src="{{ base_path ? '/' ~ base_path }}/images/{{ page_image }}@768x432.webp" alt="Pillars">
+      <img loading="eager" src="{{ base_path ? '/' ~ base_path }}/images/{{ page_image }}@768x432.webp" alt="">
     </picture>
   {% endset %}
   {% include '@psu-ooe/page-title-banner-image/page-title-banner-image.twig' with {
