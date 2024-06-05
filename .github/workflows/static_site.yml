@@ -50,7 +50,7 @@ jobs:
       - name: Create directories
         run: mkdir -p dist/images
       - name: Compile assets
-        run: php scripts/compile.php
+        run: php scripts/compile
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
