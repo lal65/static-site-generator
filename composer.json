@@ -14,5 +14,5 @@
         "ext-imagick": "*"
     },
     "minimum-stability": "dev",
-    "bin": ["bin/compile.php"]
+    "bin": ["bin/compile"]
 }
