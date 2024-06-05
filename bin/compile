@@ -16,7 +16,13 @@ use Twig\TwigFunction;
 
 include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
 
-$loader = new FilesystemLoader(['blocks', 'templates']);
+$paths = array_filter([
+  'blocks',
+  'templates',
+  'vendor' . DIRECTORY_SEPARATOR . 'psu-ooe' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'blocks',
+  'vendor' . DIRECTORY_SEPARATOR . 'psu-ooe' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'templates',
+], static fn($path) => file_exists($path));
+$loader = new FilesystemLoader($paths);
 $loader->addPath('node_modules/@psu-ooe', 'psu-ooe');
 $twig = new Environment($loader);
 
