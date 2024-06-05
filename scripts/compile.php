@@ -32,28 +32,29 @@ $twig->addFunction(new TwigFunction('get_config', Config::class . '::getConfig')
 $twig->addFunction(new TwigFunction('get_styles', Styles::class . '::getStyles'));
 $twig->addFunction(new TwigFunction('render_favicons', Favicons::class . '::renderFavicons'));
 
-$blocks = [];
-foreach (glob('blocks/*') as $region) {
-  $region_name = basename($region);
-  foreach (glob("$region/*.twig") as $block) {
-    $block_name = basename($block);
-    $blocks[$region_name][$block_name] = $twig->render($region_name . DIRECTORY_SEPARATOR . $block_name);
-  }
-}
-
-$context = yaml_parse(file_get_contents('config.yml'));
 
 $frontMatterParser = new FrontMatterParser(new LibYamlFrontMatterParser());
 foreach (glob('pages/*.md') as $page) {
   $content = file_get_contents($page);
   $result = $frontMatterParser->parse($content);
   $frontmatter = $result->getFrontMatter();
-  $context['blocks'] = $blocks;
-  $context['content'] = $result->getContent();
 
+  $context = yaml_parse(file_get_contents('config.yml'));
   if (is_array($frontmatter)) {
     $context += $frontmatter;
   }
+
+  $blocks = [];
+  foreach (glob('blocks/*') as $region) {
+    $region_name = basename($region);
+    foreach (glob("$region/*.twig") as $block) {
+      $block_name = basename($block);
+      $blocks[$region_name][$block_name] = $twig->render($region_name . DIRECTORY_SEPARATOR . $block_name, $context);
+    }
+  }
+
+  $context['blocks'] = $blocks;
+  $context['content'] = $result->getContent();
 
   if (isset($context['page_image'])) {
     $imagick = new IMagick();

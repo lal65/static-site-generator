@@ -3,30 +3,15 @@
   <body>
   {% include 'body-top.twig' %}
   {% include 'header.twig' %}
-  {% if page_image %}
-    {% set image %}
-      <picture>
-        <source srcset="{{ base_path ? '/' ~ base_path }}/images/{{ page_image }}@1920x1280.webp 1x" media="(min-width:1280px)" type="image/webp" width="1920" height="840">
-        <source srcset="{{ base_path ? '/' ~ base_path }}/images/{{ page_image }}@1280x720.webp 1x" media="(min-width:768px)" type="image/webp" width="1280" height="560">
-        <img loading="eager" src="{{ base_path ? '/' ~ base_path }}/images/{{ page_image }}@768x432.webp" width="768" height="432" alt="Pillars">
-      </picture>
-    {% endset %}
-    {% include '@psu-ooe/page-title-banner-image/page-title-banner-image.twig' with {
-      subtitle_before: page_subtitle_before,
-      title: page_title,
-      subtitle_after: page_subtitle_after,
-      image: image
-    } only %}
-  {% else %}
-    {% include '@psu-ooe/page-title-banner-plain/page-title-banner-plain.twig' with {
-      subtitle_before: page_subtitle_before,
-      title: page_title,
-      subtitle_after: page_subtitle_after,
-    } only %}
-  {% endif %}
-
-  {% apply markdown_to_html %}
-    {{ content }}
-  {% endapply %}
+  <div style="max-height: fit-content;margin-bottom:5rem;">
+    {% for block in blocks['before_content'] %}
+      {% autoescape false %}{{ block }}{% endautoescape %}
+    {% endfor %}
+  </div>
+  <main style="padding: 0 var(--page-side-padding); margin: auto; max-width: 119rem;">
+    {% apply markdown_to_html %}
+      {{ content }}
+    {% endapply %}
+  </main>
   </body>
 </html>

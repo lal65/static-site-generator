@@ -1,6 +1,16 @@
 {% embed '@psu-ooe/header/header.twig' %}
   {% block dogear_content %}
-    {% for block in blocks['dogear_content'] %}
+    {% for block in blocks['header_dogear'] %}
+      {% autoescape false %}{{ block }}{% endautoescape %}
+    {% endfor %}
+  {% endblock %}
+  {% block content %}
+    {% for block in blocks['header_content'] %}
+      {% autoescape false %}{{ block }}{% endautoescape %}
+    {% endfor %}
+  {% endblock %}
+  {% block overflow %}
+    {% for block in blocks['header_overflow'] %}
       {% autoescape false %}{{ block }}{% endautoescape %}
     {% endfor %}
   {% endblock %}
