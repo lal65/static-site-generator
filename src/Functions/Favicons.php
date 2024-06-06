@@ -25,7 +25,7 @@ class Favicons {
 
     if (!$generated) {
       $source = Input::fromFile('favicon.svg', InputImageType::SVG);
-      foreach ($generator->package($source, $manifest, '/') as $filename => $contents) {
+      foreach ($generator->package($source, $manifest, '/' . $config['base_path']) as $filename => $contents) {
         file_put_contents('dist' . DIRECTORY_SEPARATOR . $filename, $contents);
       }
       $generated = TRUE;
