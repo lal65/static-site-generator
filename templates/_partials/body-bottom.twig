@@ -1,1 +1,11 @@
+<script>
+  const cms = {
+    announce: (text, priority) => null,
+    data: name => null,
+    attach: (component, callback) => callback(document),
+    detach: (component, callback) => callback(document),
+    gtm_container_id: 'GTM-K8NQZW',
+    once: (id, selector, context = document) => context.querySelectorAll(selector),
+  };
+</script>
 <script>{% autoescape false %}{{ get_scripts() }}{% endautoescape %}</script>
