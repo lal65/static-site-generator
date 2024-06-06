@@ -6,6 +6,7 @@ use League\CommonMark\Extension\FrontMatter\FrontMatterParser;
 use ooe\Functions\Config;
 use ooe\Functions\Favicons;
 use ooe\Functions\Menus;
+use ooe\Functions\Scripts;
 use ooe\Functions\Styles;
 use Twig\Environment;
 use Twig\Extra\Markdown\DefaultMarkdown;
@@ -64,6 +65,7 @@ $twig->addFilter(new TwigFilter('clean_unique_id', static function($id) {
 
 $twig->addFunction(new TwigFunction('get_config', Config::class . '::getConfig'));
 $twig->addFunction(new TwigFunction('get_styles', Styles::class . '::getStyles'));
+$twig->addFunction(new TwigFunction('get_scripts', Scripts::class . '::getScripts'));
 $twig->addFunction(new TwigFunction('render_favicons', Favicons::class . '::renderFavicons'));
 $twig->addFunction(new TwigFunction('get_menu_items', Menus::class . '::getMenuItems'));
 
