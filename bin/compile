@@ -104,6 +104,7 @@ foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator('pages', F
       $derivative = clone $imagick;
       $derivative->scaleImage($resolution[0], $resolution[1]);
       $derivative->setImageFormat('webp');
+      $derivative->setImageCompressionQuality(50);
       $derivative->writeImage('dist/images/' . $context['page_image'] . '@' . $resolution[0] . 'x' . $resolution[1] . '.webp');
     }
   }
