@@ -11,7 +11,9 @@
   {% endblock %}
   {% block overflow %}
     {% for block in blocks['header_overflow'] %}
-      {% autoescape false %}{{ block }}{% endautoescape %}
+      <div style="position:relative;z-index:9999">
+        {% autoescape false %}{{ block }}{% endautoescape %}
+      </div>
     {% endfor %}
   {% endblock %}
 {% endembed %}
