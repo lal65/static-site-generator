@@ -9,6 +9,7 @@ class Menus {
 
   public static function getMenuItemsRecursive($directory): array {
     $items = [];
+    $base_path = Config::getConfig('base_path');
     $frontMatterParser = new FrontMatterParser(new LibYamlFrontMatterParser());
 
     foreach (new \DirectoryIterator($directory) as $file) {
@@ -24,7 +25,7 @@ class Menus {
           $path = preg_replace('/\.md$/', '', $path);
           $items[$path] = [
             'title' => $frontmatter['menu_link_title'],
-            'url' => $path === 'index' ? '/' : "/$path",
+            'url' => $path === 'index' ? "/$base_path" : "/$base_path/$path",
           ];
         }
       }
