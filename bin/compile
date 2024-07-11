@@ -47,7 +47,7 @@ foreach ($paths as $path) {
   }
 }
 
-$twig = new Environment($loader, ['debug' => TRUE]);
+$twig = new Environment($loader, ['debug' => TRUE, 'is_safe' => 'html']);
 
 $twig->addExtension(new Extension());
 $twig->addExtension(new MarkdownExtension());
