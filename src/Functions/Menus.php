@@ -23,10 +23,8 @@ class Menus {
         if (isset ($frontmatter['menu_link_title'])) {
           $path = preg_replace('/^pages\//', '', $file->getPathname());
           $path = preg_replace('/\.md$/', '', $path);
-          $items[$path] = [
-            'title' => $frontmatter['menu_link_title'],
-            'url' => $path === 'index' ? "/$base_path" : "/$base_path/$path",
-          ];
+          $items[$path]['title'] = $frontmatter['menu_link_title'];
+          $items[$path]['url'] = $path === 'index' ? "/$base_path" : "/$base_path/$path";
         }
       }
       if ($file->isDir()) {
