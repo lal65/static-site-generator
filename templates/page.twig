@@ -11,7 +11,7 @@
     {% endfor %}
   </div>
   {% if blocks['sidebar'] %}
-    <div style="display:flex;flex-wrap:wrap;">
+    <div style="display:flex;flex-wrap:wrap;gap:5%;max-width:119rem;margin:auto;">
       <main id="main-content">
         {% apply markdown_to_html %}
           {{ content }}
