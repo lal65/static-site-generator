@@ -5,6 +5,7 @@ use League\CommonMark\Extension\FrontMatter\Data\LibYamlFrontMatterParser;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParser;
 use ooe\Extension;
 use Twig\Environment;
+use Twig\Extension\DebugExtension;
 use Twig\Extra\Markdown\DefaultMarkdown;
 use Twig\Extra\Markdown\MarkdownExtension;
 use Twig\Extra\Markdown\MarkdownRuntime;
@@ -48,6 +49,7 @@ $twig = new Environment($loader);
 
 $twig->addExtension(new Extension());
 $twig->addExtension(new MarkdownExtension());
+$twig->addExtension(new DebugExtension());
 $twig->addRuntimeLoader(new class implements RuntimeLoaderInterface {
 
   /**
