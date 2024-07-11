@@ -4,7 +4,6 @@
 use League\CommonMark\Extension\FrontMatter\Data\LibYamlFrontMatterParser;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParser;
 use ooe\Compiler;
-use Twig\Loader\FilesystemLoader;
 
 include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
 
@@ -13,30 +12,10 @@ if (!file_exists('dist') && !mkdir($dist_dir = 'dist' . DIRECTORY_SEPARATOR . 'i
   throw new \RuntimeException(sprintf('Directory "%s" could not be created', $dist_dir));
 }
 
-
+// Install static site generator.
 $vendor_pkg = 'vendor' . DIRECTORY_SEPARATOR . 'psu-ooe' . DIRECTORY_SEPARATOR . 'static-site-generator';
 if (file_exists($vendor_pkg)) {
   exec("cd $vendor_pkg && npm install");
-}
-
-$paths = array_filter([
-  'blocks',
-  'templates',
-  'vendor' . DIRECTORY_SEPARATOR . 'psu-ooe' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'blocks',
-  'vendor' . DIRECTORY_SEPARATOR . 'psu-ooe' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'templates',
-], static fn($path) => file_exists($path));
-
-$loader = new FilesystemLoader($paths);
-$paths = array_filter([
-  'node_modules/@psu-ooe',
-  'vendor' . DIRECTORY_SEPARATOR . 'psu-ooe' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'node_modules' . DIRECTORY_SEPARATOR . '@psu-ooe',
-], static fn($path) => file_exists($path));
-
-foreach ($paths as $path) {
-  if (file_exists($path)) {
-    $loader->addPath($path, 'psu-ooe');
-    break;
-  }
 }
 
 $twig = Compiler::getInstance();
@@ -61,10 +40,20 @@ foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator('pages', F
   $blocks = [];
   foreach (glob('blocks/*') as $region) {
     $region_name = basename($region);
+    $blocks[$region_name] = [];
     foreach (glob("$region/*.twig") as $block) {
-      $block_name = basename($block);
-      $blocks[$region_name][$block_name] = $twig->render($region_name . DIRECTORY_SEPARATOR . $block_name, $context);
+      $block_config = [
+        'sort_order' => 0,
+      ];
+      $block_obj = $twig->load($region_name . DIRECTORY_SEPARATOR . basename($block));
+      $block_src = file_get_contents($block_obj->getSourceContext()->getPath());
+      preg_match('/^{#---(.+)---#}/s', $block_src, $match);
+      if ($match[1]) {
+        $block_config = array_replace_recursive($block_config, yaml_parse($match[1]));
+      }
+      $blocks[$region_name][$block_config['sort_order']] = $twig->render($region_name . DIRECTORY_SEPARATOR . basename($block), $context);
     }
+    ksort($blocks[$region_name]);
   }
 
   $context['blocks'] = $blocks;

@@ -12,6 +12,8 @@ use Twig\Extra\Markdown\MarkdownExtension;
 use Twig\Extra\Markdown\MarkdownRuntime;
 use Twig\Loader\FilesystemLoader;
 use Twig\RuntimeLoader\RuntimeLoaderInterface;
+use Webuni\FrontMatter\Twig\FrontMatterLoader;
+use Webuni\FrontMatter\Twig\TwigCommentFrontMatter;
 
 class Compiler {
 
@@ -35,6 +37,7 @@ class Compiler {
       ], static fn($path) => file_exists($path));
 
       $loader = new FilesystemLoader($paths);
+
       $paths = array_filter([
         'node_modules/@psu-ooe',
         'vendor' . DIRECTORY_SEPARATOR . 'psu-ooe' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'node_modules' . DIRECTORY_SEPARATOR . '@psu-ooe',
