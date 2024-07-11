@@ -10,10 +10,10 @@ class Breadcrumbs {
     $crumbs = [['url' => '/', 'text' => 'Home']];
 
     $frontMatterParser = new FrontMatterParser(new LibYamlFrontMatterParser());
-    $root = 'pages/';
-    foreach (explode('/', $path) as $index => $part) {
+    $root = '';
+    foreach (explode('/', $path) as $part) {
       $part_without_extension = preg_replace('/\.md$/', '', $part);
-      $metadata = $frontMatterParser->parse(file_get_contents($root . $part_without_extension . '.md'))->getFrontMatter();
+      $metadata = $frontMatterParser->parse(file_get_contents('pages/' . $root . $part_without_extension . '.md'))->getFrontMatter();
 
       if (!str_ends_with($part, '.md')) {
         $crumbs[] = ['url' => $root . '/' . $part_without_extension, 'text' => $metadata['page_title']];
