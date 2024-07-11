@@ -17,6 +17,9 @@
           {{ content }}
         {% endapply %}
       </main>
+      {% for block in blocks['after_main'] %}
+        {% autoescape false %}{{ block }}{% endautoescape %}
+      {% endfor %}
       <aside>
         {% for block in blocks['sidebar'] %}
           {% autoescape false %}{{ block }}{% endautoescape %}
