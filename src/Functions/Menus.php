@@ -25,6 +25,7 @@ class Menus {
           $path = preg_replace('/\.md$/', '', $path);
           $items[$path]['title'] = $frontmatter['menu_link_title'];
           $items[$path]['url'] = $path === 'index' ? "/$base_path" : "/$base_path/$path";
+          $items[$path]['sort_order'] = $frontmatter['sort_order'] ?? 0;
         }
       }
       if ($file->isDir()) {
@@ -32,6 +33,7 @@ class Menus {
         $items[$path]['below'] = Menus::getMenuItemsRecursive($file->getPathname());
       }
     }
+    usort($items, static fn ($lhs, $rhs) => $lhs['sort_order'] - $rhs['sort_order']);
     return $items;
   }
 

@@ -7,6 +7,7 @@ page_subtitle_before: 'Penn State World Campus'
 page_title: 'Security'
 page_subtitle_after: 'Perfect Security'
 menu_link_title: 'Security'
+sort_order: 1
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Scelerisque in dictum non consectetur a erat nam at. Proin fermentum leo vel orci. Ac feugiat sed lectus vestibulum. Sed euismod nisi porta lorem mollis aliquam ut porttitor. Iaculis at erat pellentesque adipiscing commodo elit at. Sit amet dictum sit amet justo donec enim diam vulputate. Cras adipiscing enim eu turpis egestas pretium aenean pharetra magna. Suspendisse ultrices gravida dictum fusce ut placerat. Facilisis volutpat est velit egestas dui. Aliquam ut porttitor leo a diam. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Morbi blandit cursus risus at ultrices mi tempus imperdiet nulla. Tortor posuere ac ut consequat semper viverra nam libero. Aenean sed adipiscing diam donec adipiscing.
