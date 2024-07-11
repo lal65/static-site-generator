@@ -31,6 +31,9 @@
       {% apply markdown_to_html %}
         {{ content }}
       {% endapply %}
+      {% for block in blocks['after_main'] %}
+        {% autoescape false %}{{ block }}{% endautoescape %}
+      {% endfor %}
     </main>
   {% endif %}
   {% include '_partials/body-bottom.twig' %}
