@@ -13,9 +13,7 @@
   {% if blocks['sidebar'] %}
     <div id="main-content">
       <main>
-        {% apply markdown_to_html %}
-          {{ content }}
-        {% endapply %}
+        {% autoescape false %}{{ content }}{% endautoescape %}
       </main>
       {% for block in blocks['after_main'] %}
         {% autoescape false %}{{ block }}{% endautoescape %}
