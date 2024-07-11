@@ -47,8 +47,7 @@ foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator('pages', F
       ];
       $block_obj = $twig->load($region_name . DIRECTORY_SEPARATOR . basename($block));
       $block_src = file_get_contents($block_obj->getSourceContext()->getPath());
-      preg_match('/^{#---(.+)---#}/s', $block_src, $match);
-      if ($match[1]) {
+      if (preg_match('/^{#---(.+)---#}/s', $block_src, $match) !== FALSE) {
         $block_config = array_replace_recursive($block_config, yaml_parse($match[1]));
       }
       $blocks[$region_name][$block_config['sort_order']] = $twig->render($region_name . DIRECTORY_SEPARATOR . basename($block), $context);
