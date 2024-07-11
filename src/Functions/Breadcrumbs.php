@@ -7,7 +7,8 @@ use League\CommonMark\Extension\FrontMatter\FrontMatterParser;
 
 class Breadcrumbs {
   public static function getBreadcrumbs(string $path): array {
-    $crumbs = [['url' => '/', 'text' => 'Home']];
+    $base_path = Config::getConfig('base_path');
+    $crumbs = [['url' => $base_path, 'text' => 'Home']];
 
     $frontMatterParser = new FrontMatterParser(new LibYamlFrontMatterParser());
     $root = '';
@@ -16,7 +17,7 @@ class Breadcrumbs {
       $metadata = $frontMatterParser->parse(file_get_contents('pages/' . $root . $part_without_extension . '.md'))->getFrontMatter();
 
       if (!str_ends_with($part, '.md')) {
-        $crumbs[] = ['url' => $root . '/' . $part_without_extension, 'text' => $metadata['page_title']];
+        $crumbs[] = ['url' => $base_path . $root . '/' . $part_without_extension, 'text' => $metadata['page_title']];
       }
       else {
         $crumbs[] = ['text' => $metadata['page_title']];
