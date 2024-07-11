@@ -4,6 +4,7 @@
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Extension\FrontMatter\Data\LibYamlFrontMatterParser;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParser;
+use League\CommonMark\Extension\Table\TableExtension;
 use ooe\Extension;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
@@ -59,7 +60,9 @@ $twig->addRuntimeLoader(new class implements RuntimeLoaderInterface {
   public function load($class) {
     $runtime = NULL;
     if (MarkdownRuntime::class === $class) {
-      $runtime = new MarkdownRuntime(new LeagueMarkdown(new CommonMarkConverter(['html_input' => 'allow'])));
+      $converter = new CommonMarkConverter(['html_input' => 'allow']);
+      $converter->getEnvironment()->addExtension(new TableExtension());
+      $runtime = new MarkdownRuntime(new LeagueMarkdown($converter));
     }
     return $runtime;
   }
