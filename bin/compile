@@ -1,18 +1,10 @@
 #!/usr/bin/env php
 <?php
 
-use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Extension\FrontMatter\Data\LibYamlFrontMatterParser;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParser;
-use League\CommonMark\Extension\Table\TableExtension;
-use ooe\Extension;
-use Twig\Environment;
-use Twig\Extension\DebugExtension;
-use Twig\Extra\Markdown\LeagueMarkdown;
-use Twig\Extra\Markdown\MarkdownExtension;
-use Twig\Extra\Markdown\MarkdownRuntime;
+use ooe\Compiler;
 use Twig\Loader\FilesystemLoader;
-use Twig\RuntimeLoader\RuntimeLoaderInterface;
 
 include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
 
@@ -47,26 +39,7 @@ foreach ($paths as $path) {
   }
 }
 
-$twig = new Environment($loader, ['debug' => TRUE, 'is_safe' => 'html']);
-
-$twig->addExtension(new Extension());
-$twig->addExtension(new MarkdownExtension());
-$twig->addExtension(new DebugExtension());
-$twig->addRuntimeLoader(new class implements RuntimeLoaderInterface {
-
-  /**
-   * {@inheritdoc}
-   */
-  public function load($class) {
-    $runtime = NULL;
-    if (MarkdownRuntime::class === $class) {
-      $converter = new CommonMarkConverter(['html_input' => 'allow']);
-      $converter->getEnvironment()->addExtension(new TableExtension());
-      $runtime = new MarkdownRuntime(new LeagueMarkdown($converter));
-    }
-    return $runtime;
-  }
-});
+$twig = Compiler::getInstance();
 
 $frontMatterParser = new FrontMatterParser(new LibYamlFrontMatterParser());
 

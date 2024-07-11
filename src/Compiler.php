@@ -2,28 +2,31 @@
 
 namespace ooe;
 
-use League\CommonMark\Extension\FrontMatter\Data\LibYamlFrontMatterParser;
-use League\CommonMark\Extension\FrontMatter\FrontMatterParser;
+use League\CommonMark\CommonMarkConverter;
+use League\CommonMark\Extension\Table\TableExtension;
 use ooe\Functions\Config;
-use ooe\Functions\Favicons;
-use ooe\Functions\Menus;
-use ooe\Functions\Scripts;
-use ooe\Functions\Styles;
 use Twig\Environment;
-use Twig\Extra\Markdown\DefaultMarkdown;
+use Twig\Extension\DebugExtension;
+use Twig\Extra\Markdown\LeagueMarkdown;
 use Twig\Extra\Markdown\MarkdownExtension;
 use Twig\Extra\Markdown\MarkdownRuntime;
 use Twig\Loader\FilesystemLoader;
 use Twig\RuntimeLoader\RuntimeLoaderInterface;
-use Twig\TwigFilter;
-use Twig\TwigFunction;
 
 class Compiler {
 
-  protected static $compiler:
-  
-  static public function getInstance() {
+  protected static ?Environment $compiler = NULL;
+
+  /**
+   * Gets a twig compiler instance.
+   *
+   * @return Environment
+   *   A twig compiler instance.
+   * @throws \Twig\Error\LoaderError
+   */
+  public static function getInstance() {
     if (!static::$compiler) {
+      $debug = Config::getConfig('debug', FALSE);
       $paths = array_filter([
         'blocks',
         'templates',
@@ -44,27 +47,29 @@ class Compiler {
         }
       }
 
-      $twig = new Environment($loader);
-
+      $twig = new Environment($loader, ['debug' => $debug]);
+      if ($debug) {
+        $twig->addExtension(new DebugExtension());
+      }
+      $twig->addExtension(new Extension());
       $twig->addExtension(new MarkdownExtension());
+
       $twig->addRuntimeLoader(new class implements RuntimeLoaderInterface {
-        public function load($class) {
+
+        /**
+         * {@inheritdoc}
+         */
+        public function load($class): ?MarkdownRuntime
+        {
+          $runtime = NULL;
           if (MarkdownRuntime::class === $class) {
-            return new MarkdownRuntime(new DefaultMarkdown());
+            $converter = new CommonMarkConverter(['html_input' => 'allow']);
+            $converter->getEnvironment()->addExtension(new TableExtension());
+            $runtime = new MarkdownRuntime(new LeagueMarkdown($converter));
           }
+          return $runtime;
         }
       });
-
-      $twig->addFilter(new TwigFilter('clean_unique_id', static function($id) {
-        $id = str_replace(' ', '-', $id);
-        return $id . '-' . uniqid();
-      }));
-
-      $twig->addFunction(new TwigFunction('get_config', Config::class . '::getConfig'));
-      $twig->addFunction(new TwigFunction('get_styles', Styles::class . '::getStyles'));
-      $twig->addFunction(new TwigFunction('get_scripts', Scripts::class . '::getScripts'));
-      $twig->addFunction(new TwigFunction('render_favicons', Favicons::class . '::renderFavicons'));
-      $twig->addFunction(new TwigFunction('get_menu_items', Menus::class . '::getMenuItems'));
 
       static::$compiler = $twig;
     }
