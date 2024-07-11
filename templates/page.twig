@@ -7,30 +7,28 @@
   {% include '_partials/header.twig' %}
   <div style="height: fit-content;">
     {% for block in blocks['before_content'] %}
-      {% autoescape false %}{{ block }}{% endautoescape %}
+      {{ block|raw }}
     {% endfor %}
   </div>
   {% if blocks['sidebar'] %}
     <div id="main-content">
       <main>
-        {% autoescape false %}{{ content }}{% endautoescape %}
+        {{ content|raw }}
       </main>
       {% for block in blocks['after_main'] %}
-        {% autoescape false %}{{ block }}{% endautoescape %}
+        {{ block|raw }}
       {% endfor %}
       <aside>
         {% for block in blocks['sidebar'] %}
-          {% autoescape false %}{{ block }}{% endautoescape %}
+          {{ block|raw }}
         {% endfor %}
       </aside>
     </div>
   {% else %}
     <main id="main-content">
-      {% apply markdown_to_html %}
-        {% autoescape false %}{{ content }}{% endautoescape %}
-      {% endapply %}
+      {{ content|raw }}
       {% for block in blocks['after_main'] %}
-        {% autoescape false %}{{ block }}{% endautoescape %}
+        {{ block|raw }}
       {% endfor %}
     </main>
   {% endif %}
