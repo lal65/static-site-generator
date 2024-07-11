@@ -3,29 +3,26 @@
 
 use League\CommonMark\Extension\FrontMatter\Data\LibYamlFrontMatterParser;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParser;
-use ooe\Functions\Config;
-use ooe\Functions\Favicons;
-use ooe\Functions\Menus;
-use ooe\Functions\Scripts;
-use ooe\Functions\Styles;
+use ooe\Extension;
 use Twig\Environment;
 use Twig\Extra\Markdown\DefaultMarkdown;
 use Twig\Extra\Markdown\MarkdownExtension;
 use Twig\Extra\Markdown\MarkdownRuntime;
 use Twig\Loader\FilesystemLoader;
 use Twig\RuntimeLoader\RuntimeLoaderInterface;
-use Twig\TwigFilter;
-use Twig\TwigFunction;
 
 include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
 
-if (!file_exists('dist')) {
-  mkdir('dist' . DIRECTORY_SEPARATOR . 'images', 0777, TRUE);
+// Create necessary directories.
+if (!file_exists('dist') && !mkdir($dist_dir = 'dist' . DIRECTORY_SEPARATOR . 'images', 0777, TRUE) && !is_dir($dist_dir)) {
+  throw new \RuntimeException(sprintf('Directory "%s" could not be created', $dist_dir));
 }
 
+
 $vendor_pkg = 'vendor' . DIRECTORY_SEPARATOR . 'psu-ooe' . DIRECTORY_SEPARATOR . 'static-site-generator';
-if (file_exists($vendor_pkg))
-exec("cd $vendor_pkg && npm install");
+if (file_exists($vendor_pkg)) {
+  exec("cd $vendor_pkg && npm install");
+}
 
 $paths = array_filter([
   'blocks',
@@ -49,6 +46,7 @@ foreach ($paths as $path) {
 
 $twig = new Environment($loader);
 
+$twig->addExtension(new Extension());
 $twig->addExtension(new MarkdownExtension());
 $twig->addRuntimeLoader(new class implements RuntimeLoaderInterface {
   public function load($class) {
@@ -57,17 +55,6 @@ $twig->addRuntimeLoader(new class implements RuntimeLoaderInterface {
     }
   }
 });
-
-$twig->addFilter(new TwigFilter('clean_unique_id', static function($id) {
-  $id = str_replace(' ', '-', $id);
-  return $id . '-' . uniqid();
-}));
-
-$twig->addFunction(new TwigFunction('get_config', Config::class . '::getConfig'));
-$twig->addFunction(new TwigFunction('get_styles', Styles::class . '::getStyles'));
-$twig->addFunction(new TwigFunction('get_scripts', Scripts::class . '::getScripts'));
-$twig->addFunction(new TwigFunction('render_favicons', Favicons::class . '::renderFavicons'));
-$twig->addFunction(new TwigFunction('get_menu_items', Menus::class . '::getMenuItems'));
 
 $frontMatterParser = new FrontMatterParser(new LibYamlFrontMatterParser());
 
@@ -88,7 +75,7 @@ foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator('pages', F
   $blocks = [];
   foreach (glob('blocks/*') as $region) {
     $region_name = basename($region);
-    foreach (glob("$region/*.twig") as $block) {
+    foreach (glob("$region/*.{md,twig}", GLOB_BRACE) as $block) {
       $block_name = basename($block);
       $blocks[$region_name][$block_name] = $twig->render($region_name . DIRECTORY_SEPARATOR . $block_name, $context);
     }
