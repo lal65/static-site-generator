@@ -33,7 +33,7 @@ class Menus {
         $items[$path]['below'] = Menus::getMenuItemsRecursive($file->getPathname());
       }
     }
-    usort($items, static fn ($lhs, $rhs) => $lhs['sort_order'] - $rhs['sort_order']);
+    uasort($items, static fn ($lhs, $rhs) => $lhs['sort_order'] - $rhs['sort_order']);
     return $items;
   }
 
