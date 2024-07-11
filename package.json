@@ -11,6 +11,8 @@
   "dependencies": {
     "@psu-ooe/announcement": "^2.0.0",
     "@psu-ooe/base": "^2.1.0",
+    "@psu-ooe/breadcrumbs": "^2.0.0",
+    "@psu-ooe/callout": "^1.0.0",
     "@psu-ooe/header": "^1.0.0",
     "@psu-ooe/heading": "^2.0.1",
     "@psu-ooe/horizontal-menu": "^2.0.0",

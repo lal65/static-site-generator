@@ -49,10 +49,16 @@ $twig = new Environment($loader);
 $twig->addExtension(new Extension());
 $twig->addExtension(new MarkdownExtension());
 $twig->addRuntimeLoader(new class implements RuntimeLoaderInterface {
+
+  /**
+   * {@inheritdoc}
+   */
   public function load($class) {
+    $runtime = NULL;
     if (MarkdownRuntime::class === $class) {
-      return new MarkdownRuntime(new DefaultMarkdown());
+      $runtime = new MarkdownRuntime(new DefaultMarkdown());
     }
+    return $runtime;
   }
 });
 
@@ -63,11 +69,12 @@ foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator('pages', F
   if ($page->isDir()) {
     continue;
   }
+  $context = yaml_parse(file_get_contents('config.yml'));
+  $context['current_page'] = preg_replace('/^pages\//', '', $page->getPathname());
   $content = file_get_contents($page);
   $result = $frontMatterParser->parse($content);
   $frontmatter = $result->getFrontMatter();
 
-  $context = yaml_parse(file_get_contents('config.yml'));
   if (is_array($frontmatter)) {
     $context += $frontmatter;
   }

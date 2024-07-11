@@ -3,6 +3,7 @@
 namespace ooe;
 
 use ooe\Filters\CleanUniqueId;
+use ooe\Functions\Breadcrumbs;
 use ooe\Functions\Config;
 use ooe\Functions\Favicons;
 use ooe\Functions\Menus;
@@ -23,7 +24,8 @@ class Extension extends AbstractExtension {
         new TwigFunction('get_styles', Styles::class . '::getStyles'),
         new TwigFunction('get_scripts', Scripts::class . '::getScripts'),
         new TwigFunction('render_favicons', Favicons::class . '::renderFavicons'),
-        new TwigFunction('get_menu_items', Menus::class . '::getMenuItems')
+        new TwigFunction('get_menu_items', Menus::class . '::getMenuItems'),
+        new TwigFunction('get_breadcrumbs', Breadcrumbs::class . '::getBreadcrumbs'),
     ];
   }
 

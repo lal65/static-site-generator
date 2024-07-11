@@ -5,7 +5,7 @@
   {% include '_partials/body-top.twig' %}
   {% include '_partials/announcements.twig' %}
   {% include '_partials/header.twig' %}
-  <div style="height: fit-content;margin-bottom:5rem">
+  <div style="height: fit-content;">
     {% for block in blocks['before_content'] %}
       {% autoescape false %}{{ block }}{% endautoescape %}
     {% endfor %}
