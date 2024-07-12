@@ -41,7 +41,7 @@ foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator('pages', F
   if (isset($context['page_image'])) {
     $imagick = new IMagick();
     $imagick->readImage('images/' . $context['page_image']);
-    foreach ([[1920, 1280], [1280, 720], [768, 432]] as $resolution) {
+    foreach ([[1920, 840], [1280, 560], [768, 432]] as $resolution) {
       $derivative = clone $imagick;
       $derivative->scaleImage($resolution[0], $resolution[1]);
       $derivative->setImageFormat('webp');
