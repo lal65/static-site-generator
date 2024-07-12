@@ -10,6 +10,7 @@
   "description": "",
   "dependencies": {
     "@psu-ooe/announcement": "^2.0.0",
+    "@psu-ooe/background-container": "^3.1.0",
     "@psu-ooe/base": "^2.1.0",
     "@psu-ooe/breadcrumbs": "^2.0.0",
     "@psu-ooe/callout": "^1.0.0",
@@ -22,6 +23,8 @@
     "@psu-ooe/page-title-banner-image": "^1.0.0",
     "@psu-ooe/page-title-banner-plain": "^1.0.0",
     "@psu-ooe/skip-link": "^2.0.0",
+    "@psu-ooe/social-icon": "^2.0.0",
+    "@psu-ooe/social-icons": "^2.0.0",
     "@psu-ooe/vertical-menu": "^2.0.0"
   }
 }

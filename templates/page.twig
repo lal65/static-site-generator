@@ -33,5 +33,10 @@
     </main>
   {% endif %}
   {% include '_partials/body-bottom.twig' %}
+  <footer>
+    {% for block in blocks['footer'] %}
+      {{ block|raw }}
+    {% endfor %}
+  </footer>
   </body>
 </html>

@@ -1,0 +1,98 @@
+{#---
+sort_order: 1
+---#}
+{% set footer_content %}
+  <div class="contact">
+    <div class="contact__details">
+      <span>
+        {% include '@psu-ooe/sprite/sprite.twig' with { name: 'phone' } only %}
+        <a href="tel:1-814-865-5403">814-865-5403</a>
+      </span>
+      <span>{% include '@psu-ooe/sprite/sprite.twig' with { name: 'envelope' } only %}
+        <a href="mailto:worldcampus@psu.edu">worldcampus@psu.edu</a>
+      </span>
+      <span>
+        U.S. Toll Free:
+        <a href="tel:1-800-252-3592"> 800-252-3592</a>
+      </span>
+      <span>Fax: 814-865-3290</span>
+    </div>
+    <div class="contact__address">
+      <address>
+        The Pennsylvania State University
+        <br>
+        128 Outreach Building
+        <br>
+        University Park, PA 16802
+      </address>
+    </div>
+    <div class="contact__social">
+      {% set configuration = {
+        blog: 'https://blog.worldcampus.psu.edu/',
+        facebook: 'https://www.facebook.com/psuworldcampus',
+        twitter: 'https://twitter.com/PSUWorldcampus',
+        linkedin: 'https://www.linkedin.com/company/penn-state-world-campus',
+        instagram: 'https://www.instagram.com/pennstateworldcampus/',
+        youtube: 'https://www.youtube.com/user/PSUWorldCampus',
+        pinterest: 'https://www.pinterest.com/PSUWorldCampus/',
+        flickr: 'https://www.flickr.com/photos/psuworldcampus/albums',
+      } %}
+      {% set icons = [] %}
+      {% for platform in ['instagram', 'facebook', 'linkedin', 'twitter', 'youtube', 'flickr', 'pinterest', 'blog'] %}
+        {% if configuration[platform] %}
+          {% set icon %}
+            {% include '@psu-ooe/social-icon/social-icon.twig' with {
+              color: 'light',
+              icon: platform,
+              label: platform,
+              url: configuration[platform]
+            } only %}
+          {% endset %}
+          {% set icons = icons|merge([icon]) %}
+        {% endif %}
+      {% endfor %}
+      {% if icons %}
+        {% include '@psu-ooe/social-icons/social-icons.twig' with {
+          social_icons: icons,
+        } only %}
+      {% endif %}
+    </div>
+  </div>
+  <div class="legal">
+    <a class="psu-logo" href="https://www.psu.edu">
+      <span class="visually-hidden">Penn State</span>
+      {% include '@psu-ooe/sprite/sprite.twig' with { name: 'psu-mark' } only %}
+    </a>
+    {% include '@psu-ooe/heading/heading.twig' with {
+      level: 2,
+      content: 'Disclosures, policies, and copyright information',
+      classes: ['visually-hidden']
+    } only %}
+    <ul class="legal__menu">
+      <li class="legal__item">
+        <a class="legal__link" href="https://www.worldcampus.psu.edu/accessibility">Accessibility</a>
+      </li>
+      <li class="legal__item">
+        <a class="legal__link" href="https://policy.psu.edu/policies/hr11">Equal Opportunity</a>
+      </li>
+      <li class="legal__item">
+        <a class="legal__link" href="https://policy.psu.edu/policies/ad85">Nondiscrimination</a>
+      </li>
+      <li class="legal__item">
+        <a class="legal__link" href="https://www.worldcampus.psu.edu/privacy-policy">Privacy</a>
+      </li>
+      <li class="legal__item">
+        <a class="legal__link" href="https://www.worldcampus.psu.edu/consumer-information-and-disclosures">Consumer Information and Disclosures</a>
+      </li>
+      <li class="legal__item">
+        <a class="legal__link" href="https://www.psu.edu/copyright-information">The Pennsylvania State University © 2024</a>
+      </li>
+    </ul>
+  </div>
+{% endset %}
+{% include '@psu-ooe/background-container/background-container.twig' with {
+  color: 'beaver-blue',
+  background_image: 'hub-geometric:bottomright',
+  padding: 'large',
+  content: footer_content,
+} only %}

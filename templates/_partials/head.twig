@@ -17,5 +17,48 @@
     div#main-content{display:flex;flex-wrap:wrap;gap:5%;}
     #main-content > main { flex-basis: 72.5%;min-width:80rem; }
     #main-content > aside { flex-basis:22.5% }
+    .contact, .legal { display: flex; gap: 2rem; padding: 0 var(--page-side-padding); max-width: 119rem; margin: auto;}
+    .contact {
+        margin-bottom: 3rem;
+    }
+    .contact__details { display: flex; flex-direction: column;}
+    .contact__details a, .legal__link { color: white; text-decoration: none }
+    .contact__social { max-width: 22rem; }
+    @media screen and (min-width: 950px) {
+      .contact { color: white;display: grid; grid-template-columns: 20% 40% 1fr; gap: 7.5%; }
+    }
+    .psu-logo .sprite {
+        color: white;
+        height: auto;
+        width: 100%;
+        max-width: 10rem;
+        padding: 1rem;
+        height: fit-content;
+    }
+    .legal {     display: grid;
+        column-gap: 2.5%;
+        grid-template-columns: 10rem 1fr;}
+    .legal__menu {
+      margin: 0;
+      padding: 0;
+    }
+    .legal__item {  display: inline-block;
+        font-size: var(--font-size--3xsmall);
+        line-height: var(--line-height--xsnug);
+        font-weight: var(--font-weight--semibold);}
+    .legal__item:not(:last-child):not(:nth-last-child(2))::after {
+        content: "•";
+        margin-left: 1rem;
+        margin-right: 1rem;
+        color: var(--sky-blue);
+    }
+    .legal__item:last-child {
+        display: block;
+    }
+    .legal__link {
+        display: inline-block;
+        padding: 1rem 0;
+        text-decoration: none;
+    }
   </style>
 </head>
