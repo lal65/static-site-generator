@@ -22,13 +22,15 @@
     }
     .contact, .legal { display: flex; gap: 2rem; padding: 0 var(--page-side-padding); max-width: 119rem; margin: auto;}
     .contact {
+        flex-direction: column;
+        color: white;
         margin-bottom: 3rem;
     }
     .contact__details { display: flex; flex-direction: column;}
     .contact__details a, .legal__link { color: white; text-decoration: none }
     .contact__social { max-width: 22rem; }
     @media screen and (min-width: 950px) {
-      .contact { color: white;display: grid; grid-template-columns: 20% 40% 1fr; gap: 7.5%; }
+      .contact { display: grid; grid-template-columns: 20% 40% 1fr; gap: 7.5%; }
     }
     .psu-logo .sprite {
         color: white;
