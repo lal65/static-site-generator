@@ -20,18 +20,22 @@
     footer {
         margin-top: 5rem;
     }
-    .contact, .legal { display: flex; gap: 2rem; padding: 0 var(--page-side-padding); max-width: 119rem; margin: auto;}
+    .contact, .legal {  padding: 0 var(--page-side-padding); max-width: 119rem; margin: auto;}
     .contact {
-        flex-direction: column;
         color: white;
+        display: flex;
+        flex-flow: row wrap;
+        gap: 3rem 7.5%;
         margin-bottom: 3rem;
     }
     .contact__details { display: flex; flex-direction: column;}
     .contact__details a, .legal__link { color: white; text-decoration: none }
     .contact__social { max-width: 22rem; }
-    @media screen and (min-width: 950px) {
-      .contact { display: grid; grid-template-columns: 20% 40% 1fr; gap: 7.5%; }
+
+    .legal {
+        display: flex; gap: 2rem;
     }
+
     .psu-logo .sprite {
         color: white;
         height: auto;
