@@ -5,6 +5,8 @@
     items: get_menu_items()
   } only %}
 {% endset %}
-{% include '@psu-ooe/compact-menu/compact-menu.twig' with {
-  menu: menu,
-} only %}
+<div style="margin-left: auto">
+  {% include '@psu-ooe/compact-menu/compact-menu.twig' with {
+    menu: menu,
+  } only %}
+</div>

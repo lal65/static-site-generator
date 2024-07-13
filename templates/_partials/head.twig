@@ -9,6 +9,11 @@
   {% include '@psu-ooe/webfonts/webfonts.twig' %}
   {% autoescape false %}<style>{{ get_styles() }}</style>{% endautoescape %}
   <style>
+      .header {
+          position: sticky;
+          top:0;
+          z-index: 9999;
+      }
     .visually-hidden{position:absolute!important;overflow:hidden;clip:rect(1px,1px,1px,1px);width:1px;height:1px;word-wrap:normal}
     .block--system-branding-block .sprite{color:var(--beaver-blue);height:auto;width:13rem;min-width:3rem;max-width:100%}@media (min-width:550px){.block--system-branding-block .sprite{width:18.5rem}}
     .tagline::before{content:"";display:block;background-color:var(--sky-blue);height:.1rem;width:6rem;margin-bottom:.6rem}.tagline__text{color:var(--text-color--light);font-family:var(--font-family--default);font-size:var(--font-size--5xsmall);font-weight:var(--font-weight--regular);line-height:var(--line-height--xsnug)}@media (min-width:550px){.tagline{margin-left:2rem}.tagline::before{height:.2rem;width:7rem;margin-bottom:.7rem}.tagline__text{font-size:var(--font-size--3xsmall)}}@media (min-width:950px){.tagline{margin-left:4rem}.tagline::before{height:.3rem;width:8rem;margin-bottom:.8rem}.tagline__text{font-size:var(--font-size--mlarge)}}
