@@ -1,0 +1,11 @@
+{% set menu %}
+  {% include '@psu-ooe/vertical-menu/vertical-menu.twig' with {
+    menu_name: 'Primary navigation menu',
+    density: 'tight',
+    items: get_menu_items()
+  } only %}
+{% endset %}
+{% include '@psu-ooe/compact-menu/compact-menu.twig' with {
+  menu: menu,
+} only %}
+x
