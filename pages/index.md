@@ -20,3 +20,12 @@ Pretium vulputate sapien nec sagittis aliquam malesuada bibendum arcu. Vel quam 
 Aenean sed adipiscing diam donec adipiscing tristique. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue. Id donec ultrices tincidunt arcu non sodales neque sodales. Pretium vulputate sapien nec sagittis aliquam. Vel orci porta non pulvinar neque laoreet suspendisse. Mollis nunc sed id semper risus. Amet cursus sit amet dictum sit amet justo donec enim. Sed augue lacus viverra vitae congue eu consequat ac. Sit amet est placerat in egestas erat imperdiet. Nibh praesent tristique magna sit amet purus. Hac habitasse platea dictumst quisque sagittis purus sit.
 
 Mauris sit amet massa vitae tortor condimentum lacinia quis. Nibh praesent tristique magna sit amet purus gravida quis. Cras ornare arcu dui vivamus. Velit euismod in pellentesque massa. Tortor id aliquet lectus proin nibh. Ornare aenean euismod elementum nisi quis eleifend quam adipiscing. Sapien nec sagittis aliquam malesuada. Et ultrices neque ornare aenean. Sed odio morbi quis commodo odio. Enim eu turpis egestas pretium aenean pharetra magna ac placerat. Magna ac placerat vestibulum lectus mauris ultrices eros. Porta nibh venenatis cras sed felis. Leo integer malesuada nunc vel risus. At imperdiet dui accumsan sit amet nulla facilisi morbi tempus. Neque volutpat ac tincidunt vitae. Ac ut consequat semper viverra nam libero justo.
+
+{{ example('{% include "@psu-ooe/card/card.twig" with {
+  image: "https://www.worldcampus.psu.edu/sites/default/files/styles/student_spotlight_16_9_m/public/2021-03/returning-students-audience.jpg.webp?itok=e0gmxahy",
+  image_alt: "Nittany lion shrine",
+  image_decorative: true,
+  link_text: "Penn State World Campus ranked among the best institutions by U.S. News",
+  link_url: "#",
+  link_attribution: "Poets and Quants"
+} only %}')|raw }}

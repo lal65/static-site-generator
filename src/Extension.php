@@ -5,6 +5,7 @@ namespace ooe;
 use ooe\Filters\CleanUniqueId;
 use ooe\Functions\Breadcrumbs;
 use ooe\Functions\Config;
+use ooe\Functions\Example;
 use ooe\Functions\Favicons;
 use ooe\Functions\Menus;
 use ooe\Functions\Scripts;
@@ -26,6 +27,7 @@ class Extension extends AbstractExtension {
         new TwigFunction('render_favicons', Favicons::class . '::renderFavicons'),
         new TwigFunction('get_menu_items', Menus::class . '::getMenuItems'),
         new TwigFunction('get_breadcrumbs', Breadcrumbs::class . '::getBreadcrumbs'),
+        new TwigFunction('example', Example::class . '::example'),
     ];
   }
 

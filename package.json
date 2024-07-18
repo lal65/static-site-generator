@@ -9,12 +9,22 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@psu-ooe/accordion": "^2.0.0",
+    "@psu-ooe/alert": "^1.1.0",
     "@psu-ooe/announcement": "^2.0.0",
     "@psu-ooe/background-container": "^3.1.0",
     "@psu-ooe/base": "^2.1.0",
+    "@psu-ooe/bio": "^2.0.0",
+    "@psu-ooe/bio-collection": "^2.0.0",
     "@psu-ooe/breadcrumbs": "^2.0.0",
     "@psu-ooe/callout": "^1.0.0",
+    "@psu-ooe/card": "^2.0.0",
+    "@psu-ooe/cards-list": "^2.0.0",
     "@psu-ooe/compact-menu": "^1.0.0",
+    "@psu-ooe/credential": "^2.0.0",
+    "@psu-ooe/details": "^1.0.0",
+    "@psu-ooe/divider": "^2.0.0",
+    "@psu-ooe/event-link": "^2.0.0",
     "@psu-ooe/grid": "^1.2.2",
     "@psu-ooe/header": "^1.0.0",
     "@psu-ooe/heading": "^2.0.1",
@@ -28,6 +38,7 @@
     "@psu-ooe/skip-link": "^2.0.0",
     "@psu-ooe/social-icon": "^2.0.0",
     "@psu-ooe/social-icons": "^2.0.0",
+    "@psu-ooe/tabs": "^3.0.0",
     "@psu-ooe/vertical-menu": "^2.0.0"
   }
 }
