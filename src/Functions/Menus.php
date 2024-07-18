@@ -24,6 +24,7 @@ class Menus {
           $path = preg_replace('/^pages\//', '', $file->getPathname());
           $path = preg_replace('/\.md$/', '', $path);
           $items[$path]['title'] = $frontmatter['menu_link_title'];
+          $items[$path]['description'] = $frontmatter['meta']['description'];
           $items[$path]['url'] = $path === 'index' ? "/$base_path" : "/$base_path/$path";
           $items[$path]['sort_order'] = $frontmatter['sort_order'] ?? 0;
         }
