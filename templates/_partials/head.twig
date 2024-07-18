@@ -9,6 +9,21 @@
   {% include '@psu-ooe/webfonts/webfonts.twig' %}
   {% autoescape false %}<style>{{ get_styles() }}</style>{% endautoescape %}
   <style>
+      .ds-example {
+          background: var(--light-grey);
+          border: 1px solid var(--medium-dark-grey);
+          border-left: 3px solid var(--sky-blue);
+          color: var(--beaver-blue);
+          page-break-inside: avoid;
+          font-family: monospace;
+          font-size: 15px;
+          line-height: 1.6;
+          max-width: 100%;
+          overflow: auto;
+          padding: 1em 1.5em;
+          display: block;
+          word-wrap: break-word;
+      }
       .header {
           position: sticky;
           top:0;

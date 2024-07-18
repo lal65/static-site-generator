@@ -17,7 +17,7 @@ class Example {
     {% set twig_source %}
       {% apply spaceless %}
         <code>
-          <pre style="white-space: pre-wrap">
+          <pre class="ds-example">
             {{- content|trim -}}
           </pre>
         </code>
@@ -27,7 +27,7 @@ class Example {
     {% set html_source %}
       {% apply spaceless %}
         <code>
-          <pre style="white-space: pre-wrap">
+          <pre class="ds-example">
             {% autoescape false %}
               {{- content_rendered|escape|trim -}}
             {% endautoescape %}
