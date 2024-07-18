@@ -7,10 +7,22 @@ use ooe\Compiler;
 class Example {
 
   protected const EXAMPLE_TEMPLATE = <<<TWIG
+    {% set example_content %}
+      {% autoescape false %}
+        {{ content_rendered }}
+      {% endautoescape %}
+    {% endset %}
     
     {% set example %}
       {% autoescape false %}
-        {{ content_rendered }}
+        {% if context == 'dark' %}
+          {% include '@psu-ooe/callout/callout.twig' with {
+            background: 'blue-gradient',
+            content: example_content,
+          } only %}
+        {% else %}
+          {{ example_content }}
+        {% endif %}
       {% endautoescape %}
     {% endset %}
     
@@ -46,7 +58,7 @@ class Example {
 TWIG;
 
 
-  public static function example(string $content): mixed {
+  public static function example(string $content, string $context = 'light'): mixed {
     static $template = NULL;
     $compiler = Compiler::getInstance();
     if (!$template) {
@@ -54,6 +66,6 @@ TWIG;
     }
     $content = trim($content);
     $rendered_content = $compiler->createTemplate('{% apply raw %}' . $content . '{% endapply %}')->render();
-    return $template->render(['content' => $content, 'content_rendered' => $rendered_content]);
+    return $template->render(['content' => $content, 'content_rendered' => $rendered_content, 'context' => $context]);
   }
 }
