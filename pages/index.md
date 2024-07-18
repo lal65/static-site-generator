@@ -1,7 +1,7 @@
 ---
 title: 'Homepage'
 meta:
-  robots: 'index, follow'
+  robots: 'noindex, nofollow'
   description: 'Welcome to the demo static site homepage.'
 page_subtitle_before: 'Penn State World Campus'
 page_title: 'Example Static Site'
