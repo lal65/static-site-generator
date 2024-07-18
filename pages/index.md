@@ -28,4 +28,4 @@ Mauris sit amet massa vitae tortor condimentum lacinia quis. Nibh praesent trist
   link_text: "Penn State World Campus ranked among the best institutions by U.S. News",
   link_url: "#",
   link_attribution: "Poets and Quants"
-} only %}', 'light')|raw }}
+} only %}', ['light', 'dark'])|raw }}

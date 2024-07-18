@@ -15,19 +15,29 @@ class Example {
     
     {% set example %}
       {% autoescape false %}
-        {% if context == 'dark' %}
+        {{ example_content }}
+      {% endautoescape %}
+    {% endset %}
+    {% set tabs = [
+      { id: 'example-rendered'|clean_unique_id, title: 'Example', content: example },
+    ] %}
+    
+    {% if 'dark' in contexts %}
+      {% set dark_example %}
+        {% autoescape false %}
           <div data-dark>
             {% include '@psu-ooe/callout/callout.twig' with {
               background: 'blue-gradient',
               content: example_content,
             } only %}
           </div>
-        {% else %}
-          {{ example_content }}
-        {% endif %}
-      {% endautoescape %}
-    {% endset %}
-    
+        {% endautoescape %}
+      {% endset %}
+      {% set tabs = tabs|merge([
+        { id: 'example-rendered-on-dark'|clean_unique_id, title: 'Example on dark', content: dark_example },
+      ]) %}
+    {% endif %}
+
     {% set twig_source %}
       {% apply spaceless %}
         <code>
@@ -51,16 +61,15 @@ class Example {
     {% endset %}
 
     {% include '@psu-ooe/tabs/tabs.twig' with {
-      tabs: [
-        { id: 'example-rendered'|clean_unique_id, title: 'Example', content: example },
+      tabs: tabs|merge([
         { id: 'example-twig-source'|clean_unique_id, title: 'Twig Source', content: twig_source },
         { id: 'example-html-source'|clean_unique_id, title: 'HTML Source', content: html_source },
-      ]
+      ])
     } only %}
 TWIG;
 
 
-  public static function example(string $content, string $context = 'light'): mixed {
+  public static function example(string $content, array $contexts = ['light']): mixed {
     static $template = NULL;
     $compiler = Compiler::getInstance();
     if (!$template) {
@@ -68,6 +77,6 @@ TWIG;
     }
     $content = trim($content);
     $rendered_content = $compiler->createTemplate('{% apply raw %}' . $content . '{% endapply %}')->render();
-    return $template->render(['content' => $content, 'content_rendered' => $rendered_content, 'context' => $context]);
+    return $template->render(['content' => $content, 'content_rendered' => $rendered_content, 'contexts' => $contexts]);
   }
 }
