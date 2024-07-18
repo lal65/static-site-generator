@@ -16,10 +16,12 @@ class Example {
     {% set example %}
       {% autoescape false %}
         {% if context == 'dark' %}
-          {% include '@psu-ooe/callout/callout.twig' with {
-            background: 'blue-gradient',
-            content: example_content,
-          } only %}
+          <div data-dark>
+            {% include '@psu-ooe/callout/callout.twig' with {
+              background: 'blue-gradient',
+              content: example_content,
+            } only %}
+          </div>
         {% else %}
           {{ example_content }}
         {% endif %}
