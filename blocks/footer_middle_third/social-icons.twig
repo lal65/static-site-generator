@@ -1,0 +1,28 @@
+{#---
+sort_order: 0
+---#}
+{% set configuration = {
+  blog: 'https://blog.worldcampus.psu.edu/',
+  facebook: 'https://www.facebook.com/psuworldcampus',
+  twitter: 'https://twitter.com/PSUWorldcampus',
+  linkedin: 'https://www.linkedin.com/company/penn-state-world-campus',
+  instagram: 'https://www.instagram.com/pennstateworldcampus/',
+  youtube: 'https://www.youtube.com/user/PSUWorldCampus',
+  pinterest: 'https://www.pinterest.com/PSUWorldCampus/',
+  flickr: 'https://www.flickr.com/photos/psuworldcampus/albums',
+} %}
+{% set icons = [] %}
+{% for platform_name, platform_url in configuration %}
+  {% set icon %}
+    {% include '@psu-ooe/social-icon/social-icon.twig' with {
+      color: 'light',
+      icon: platform_name,
+      label: platform_name,
+      url: configuration[platform_url]
+    } only %}
+  {% endset %}
+  {% set icons = icons|merge([icon]) %}
+{% endfor %}
+  {% include '@psu-ooe/social-icons/social-icons.twig' with {
+    social_icons: icons,
+  } only %}

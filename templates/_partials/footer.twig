@@ -1,0 +1,37 @@
+{%- embed '@psu-ooe/footer/footer.twig' -%}
+  {%-  block top_first  -%}
+    {%- for block in blocks['footer_top_first'] -%}
+      {%- autoescape false -%}{{- block -}}{%- endautoescape -%}
+    {%- endfor -%}
+  {%-  endblock  -%}
+  {%-  block top_second  -%}
+    {%- for block in blocks['footer_top_second'] -%}
+      {%- autoescape false -%}{{- block -}}{%- endautoescape -%}
+    {%- endfor -%}
+  {%-  endblock  -%}
+  {%-  block top_third  -%}
+    {%-  for block in blocks['footer_top_third']  -%}
+      {%- autoescape false -%}{{- block -}}{%- endautoescape -%}
+    {%-  endfor  -%}
+  {%-  endblock  -%}
+  {%- block middle_first -%}
+    {%- for block in blocks['footer_middle_first'] -%}
+      {%- autoescape false -%}{{- block -}}{%- endautoescape -%}
+    {%- endfor -%}
+  {%- endblock -%}
+  {%- block middle_second -%}
+    {%- for block in blocks['footer_middle_second'] -%}
+      {%- autoescape false -%}{{- block -}}{%- endautoescape -%}
+    {%- endfor -%}
+  {%- endblock -%}
+  {%- block middle_third -%}
+    {%- for block in blocks['footer_middle_third'] -%}
+      {%- autoescape false -%}{{- block -}}{%- endautoescape -%}
+    {%- endfor -%}
+  {%- endblock -%}
+  {%- block colophon -%}
+    {%- for block in blocks['footer_colophon'] -%}
+      {%- autoescape false -%}{{- block -}}{%- endautoescape -%}
+    {%- endfor -%}
+  {%- endblock -%}
+{%- endembed -%}
