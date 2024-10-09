@@ -45,6 +45,7 @@
     "@psu-ooe/input-text": "^1.0.0",
     "@psu-ooe/input-time": "^1.0.0",
     "@psu-ooe/input-url": "^1.0.0",
+    "@psu-ooe/label": "^1.0.0",
     "@psu-ooe/list": "^1.0.0",
     "@psu-ooe/navigation-tile": "^2.0.0",
     "@psu-ooe/page-title": "^1.0.1",
