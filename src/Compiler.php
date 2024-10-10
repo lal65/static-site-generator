@@ -7,6 +7,7 @@ use League\CommonMark\Extension\Table\TableExtension;
 use ooe\Functions\Config;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
+use Twig\Extension\StringLoaderExtension;
 use Twig\Extra\Markdown\LeagueMarkdown;
 use Twig\Extra\Markdown\MarkdownExtension;
 use Twig\Extra\Markdown\MarkdownRuntime;
@@ -51,6 +52,7 @@ class Compiler {
       }
 
       $twig = new Environment($loader, ['debug' => $debug]);
+      $twig->addExtension(new StringLoaderExtension());
       if ($debug) {
         $twig->addExtension(new DebugExtension());
       }
