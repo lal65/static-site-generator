@@ -13,6 +13,7 @@
     "@psu-ooe/alert": "^1.1.0",
     "@psu-ooe/announcement": "^2.0.0",
     "@psu-ooe/background-container": "^3.1.0",
+    "@psu-ooe/band": "^2.1.0",
     "@psu-ooe/base": "^2.1.0",
     "@psu-ooe/bio": "^2.0.0",
     "@psu-ooe/bio-collection": "^2.0.0",
@@ -60,6 +61,7 @@
     "@psu-ooe/skip-link": "^2.0.0",
     "@psu-ooe/social-icon": "^2.0.0",
     "@psu-ooe/social-icons": "^2.0.0",
+    "@psu-ooe/sticky-panel": "^1.0.4",
     "@psu-ooe/tabs": "^3.0.0",
     "@psu-ooe/textarea": "^1.1.0",
     "@psu-ooe/vertical-menu": "^2.0.0"
