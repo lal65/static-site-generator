@@ -7,7 +7,10 @@ use League\CommonMark\Extension\FrontMatter\FrontMatterParser;
 
 class Menus {
 
-  public static function getMenuItemsRecursive($directory): array {
+  public static function getMenuItemsRecursive($directory, $depth, $limit = 0): array {
+    if ($limit > 0 && $limit < $depth) {
+      return [];
+    }
     $items = [];
     $base_path = Config::getConfig('base_path');
     $frontMatterParser = new FrontMatterParser(new LibYamlFrontMatterParser());
@@ -31,14 +34,14 @@ class Menus {
       }
       if ($file->isDir()) {
         $path = preg_replace('/^pages\//', '', $file->getPathname());
-        $items[$path]['below'] = Menus::getMenuItemsRecursive($file->getPathname());
+        $items[$path]['below'] = Menus::getMenuItemsRecursive($file->getPathname(), $depth + 1, $limit);
       }
     }
     uasort($items, static fn ($lhs, $rhs) => $lhs['sort_order'] - $rhs['sort_order']);
     return $items;
   }
 
-  public static function getMenuItems(): array {
-    return static::getMenuItemsRecursive('pages');
+  public static function getMenuItems($limit = 0): array {
+    return static::getMenuItemsRecursive('pages', 0, $limit);
   }
 }
