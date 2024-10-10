@@ -61,6 +61,7 @@
     "@psu-ooe/social-icon": "^2.0.0",
     "@psu-ooe/social-icons": "^2.0.0",
     "@psu-ooe/tabs": "^3.0.0",
+    "@psu-ooe/textarea": "^1.1.0",
     "@psu-ooe/vertical-menu": "^2.0.0"
   }
 }
