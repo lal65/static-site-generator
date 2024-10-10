@@ -27,6 +27,7 @@
     "@psu-ooe/event-link": "^2.0.0",
     "@psu-ooe/fieldset": "^1.0.0",
     "@psu-ooe/footer": "^1.0.0",
+    "@psu-ooe/form": "^1.0.0",
     "@psu-ooe/grid": "^1.2.2",
     "@psu-ooe/header": "^1.0.0",
     "@psu-ooe/heading": "^3.1.0",
