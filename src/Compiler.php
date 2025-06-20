@@ -41,7 +41,7 @@ class Compiler {
 
       $paths = array_filter([
         'node_modules/@psu-online-education',
-        'vendor' . DIRECTORY_SEPARATOR . 'psu-online-education' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'node_modules' . DIRECTORY_SEPARATOR . '@oe',
+        'vendor' . DIRECTORY_SEPARATOR . 'psu-online-education' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'node_modules' . DIRECTORY_SEPARATOR . '@psu-online-education',
       ], static fn($path) => file_exists($path));
       
       foreach ($paths as $path) {
