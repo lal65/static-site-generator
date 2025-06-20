@@ -18,8 +18,8 @@ class Scripts {
   public static function getScripts(): string {
     $manifests = [];
     $path = array_filter([
-      'node_modules' . DIRECTORY_SEPARATOR . '@oe',
-      'vendor' . DIRECTORY_SEPARATOR . 'psu-online-education' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'node_modules' . DIRECTORY_SEPARATOR . '@oe',
+      'node_modules' . DIRECTORY_SEPARATOR . '@psu-online-education',
+      'vendor' . DIRECTORY_SEPARATOR . 'psu-online-education' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'node_modules' . DIRECTORY_SEPARATOR . '@psu-online-education',
     ], static fn($path) => file_exists($path));
     foreach (glob(current($path) . '/*/package.json') as $manifest) {
       $manifest_json = json_decode(file_get_contents($manifest), TRUE, 512, JSON_THROW_ON_ERROR);
