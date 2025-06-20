@@ -1,8 +1,8 @@
 <?php
 
-namespace ooe\Functions;
+namespace oe\Functions;
 
-use ooe\Compiler;
+use oe\Compiler;
 
 class Example {
 
@@ -26,7 +26,7 @@ class Example {
       {% set dark_example %}
         {% autoescape false %}
           <div data-dark>
-            {% include '@psu-ooe/callout/callout.twig' with {
+            {% include '@oe/callout/callout.twig' with {
               background: 'blue-gradient',
               content: example_content,
             } only %}
@@ -60,7 +60,7 @@ class Example {
       {% endapply %}
     {% endset %}
 
-    {% include '@psu-ooe/tabs/tabs.twig' with {
+    {% include '@oe/tabs/tabs.twig' with {
       tabs: tabs|merge([
         { id: 'example-twig-source'|clean_unique_id, title: 'Twig Source', content: twig_source },
         { id: 'example-html-source'|clean_unique_id, title: 'HTML Source', content: html_source },

@@ -21,7 +21,7 @@ Aenean sed adipiscing diam donec adipiscing tristique. Ut enim blandit volutpat 
 
 Mauris sit amet massa vitae tortor condimentum lacinia quis. Nibh praesent tristique magna sit amet purus gravida quis. Cras ornare arcu dui vivamus. Velit euismod in pellentesque massa. Tortor id aliquet lectus proin nibh. Ornare aenean euismod elementum nisi quis eleifend quam adipiscing. Sapien nec sagittis aliquam malesuada. Et ultrices neque ornare aenean. Sed odio morbi quis commodo odio. Enim eu turpis egestas pretium aenean pharetra magna ac placerat. Magna ac placerat vestibulum lectus mauris ultrices eros. Porta nibh venenatis cras sed felis. Leo integer malesuada nunc vel risus. At imperdiet dui accumsan sit amet nulla facilisi morbi tempus. Neque volutpat ac tincidunt vitae. Ac ut consequat semper viverra nam libero justo.
 
-{{ example('{% include "@psu-ooe/card/card.twig" with {
+{{ example('{% include "@oe/card/card.twig" with {
   image: "https://www.worldcampus.psu.edu/sites/default/files/styles/student_spotlight_16_9_m/public/2021-03/returning-students-audience.jpg.webp?itok=e0gmxahy",
   image_alt: "Nittany lion shrine",
   image_decorative: true,

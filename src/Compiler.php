@@ -1,10 +1,10 @@
 <?php
 
-namespace ooe;
+namespace oe;
 
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Extension\Table\TableExtension;
-use ooe\Functions\Config;
+use oe\Functions\Config;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Extension\StringLoaderExtension;
@@ -33,20 +33,20 @@ class Compiler {
       $paths = array_filter([
         'blocks',
         'templates',
-        'vendor' . DIRECTORY_SEPARATOR . 'psu-ooe' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'blocks',
-        'vendor' . DIRECTORY_SEPARATOR . 'psu-ooe' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'templates',
+        'vendor' . DIRECTORY_SEPARATOR . 'psu-online-education' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'blocks',
+        'vendor' . DIRECTORY_SEPARATOR . 'psu-online-education' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'templates',
       ], static fn($path) => file_exists($path));
 
       $loader = new FilesystemLoader($paths);
 
       $paths = array_filter([
-        'node_modules/@psu-ooe',
-        'vendor' . DIRECTORY_SEPARATOR . 'psu-ooe' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'node_modules' . DIRECTORY_SEPARATOR . '@psu-ooe',
+        'node_modules/@psu-online-education',
+        'vendor' . DIRECTORY_SEPARATOR . 'psu-online-education' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'node_modules' . DIRECTORY_SEPARATOR . '@oe',
       ], static fn($path) => file_exists($path));
       
       foreach ($paths as $path) {
         if (file_exists($path)) {
-          $loader->addPath($path, 'psu-ooe');
+          $loader->addPath($path, 'oe');
           break;
         }
       }

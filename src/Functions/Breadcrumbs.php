@@ -1,6 +1,6 @@
 <?php
 
-namespace ooe\Functions;
+namespace oe\Functions;
 
 use League\CommonMark\Extension\FrontMatter\Data\LibYamlFrontMatterParser;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParser;

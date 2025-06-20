@@ -2,13 +2,13 @@
 sort_order: 1
 ---#}
 {% set breadcrumbs %}
-  {% include '@psu-ooe/breadcrumbs/breadcrumbs.twig' with {
+  {% include '@oe/breadcrumbs/breadcrumbs.twig' with {
     heading_level: 'h2',
     heading: 'Breadcrumbs',
     id: 'breadcrumbs',
     breadcrumbs: get_breadcrumbs(current_page),
   } only %}
 {% endset %}
-{% include '@psu-ooe/callout/callout.twig' with {
+{% include '@oe/callout/callout.twig' with {
   content: breadcrumbs,
 } only %}

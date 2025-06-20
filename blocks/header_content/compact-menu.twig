@@ -2,14 +2,14 @@
 sort_order: 1
 ---#}
 {% set menu %}
-  {% include '@psu-ooe/vertical-menu/vertical-menu.twig' with {
+  {% include '@oe/vertical-menu/vertical-menu.twig' with {
     menu_name: 'Primary navigation menu',
     density: 'tight',
     items: get_menu_items()
   } only %}
 {% endset %}
 <div style="margin-left: auto">
-  {% include '@psu-ooe/compact-menu/compact-menu.twig' with {
+  {% include '@oe/compact-menu/compact-menu.twig' with {
     menu: menu,
   } only %}
 </div>

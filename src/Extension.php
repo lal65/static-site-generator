@@ -1,15 +1,15 @@
 <?php
 
-namespace ooe;
+namespace oe;
 
-use ooe\Filters\CleanUniqueId;
-use ooe\Functions\Breadcrumbs;
-use ooe\Functions\Config;
-use ooe\Functions\Example;
-use ooe\Functions\Favicons;
-use ooe\Functions\Menus;
-use ooe\Functions\Scripts;
-use ooe\Functions\Styles;
+use oe\Filters\CleanUniqueId;
+use oe\Functions\Breadcrumbs;
+use oe\Functions\Config;
+use oe\Functions\Example;
+use oe\Functions\Favicons;
+use oe\Functions\Menus;
+use oe\Functions\Scripts;
+use oe\Functions\Styles;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;

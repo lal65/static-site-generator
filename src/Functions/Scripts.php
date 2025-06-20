@@ -1,6 +1,6 @@
 <?php
 
-namespace ooe\Functions;
+namespace oe\Functions;
 
 class Scripts {
 
@@ -18,8 +18,8 @@ class Scripts {
   public static function getScripts(): string {
     $manifests = [];
     $path = array_filter([
-      'node_modules' . DIRECTORY_SEPARATOR . '@psu-ooe',
-      'vendor' . DIRECTORY_SEPARATOR . 'psu-ooe' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'node_modules' . DIRECTORY_SEPARATOR . '@psu-ooe',
+      'node_modules' . DIRECTORY_SEPARATOR . '@oe',
+      'vendor' . DIRECTORY_SEPARATOR . 'psu-online-education' . DIRECTORY_SEPARATOR . 'static-site-generator' . DIRECTORY_SEPARATOR . 'node_modules' . DIRECTORY_SEPARATOR . '@oe',
     ], static fn($path) => file_exists($path));
     foreach (glob(current($path) . '/*/package.json') as $manifest) {
       $manifest_json = json_decode(file_get_contents($manifest), TRUE, 512, JSON_THROW_ON_ERROR);
@@ -48,7 +48,7 @@ class Scripts {
 
     $scripts = '';
     foreach (array_keys($manifests) as $manifest) {
-      $component = str_replace('@psu-ooe/', '', $manifest);
+      $component = str_replace('@oe/', '', $manifest);
       $potential_js_file = current($path) ."/$component/dist/scripts.js";
       if (file_exists($potential_js_file)) {
         $file_content = trim(file_get_contents($potential_js_file));

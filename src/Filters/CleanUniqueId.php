@@ -1,6 +1,6 @@
 <?php
 
-namespace ooe\Filters;
+namespace oe\Filters;
 
 class CleanUniqueId {
 

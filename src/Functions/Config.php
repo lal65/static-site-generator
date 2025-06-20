@@ -1,6 +1,6 @@
 <?php
 
-namespace ooe\Functions;
+namespace oe\Functions;
 
 class Config {
 

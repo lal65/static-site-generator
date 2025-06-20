@@ -14,7 +14,7 @@ sort_order: 0
 {% set icons = [] %}
 {% for platform_name, platform_url in configuration %}
   {% set icon %}
-    {% include '@psu-ooe/social-icon/social-icon.twig' with {
+    {% include '@oe/social-icon/social-icon.twig' with {
       color: 'light',
       icon: platform_name,
       label: platform_name,
@@ -23,6 +23,6 @@ sort_order: 0
   {% endset %}
   {% set icons = icons|merge([icon]) %}
 {% endfor %}
-  {% include '@psu-ooe/social-icons/social-icons.twig' with {
+  {% include '@oe/social-icons/social-icons.twig' with {
     social_icons: icons,
   } only %}

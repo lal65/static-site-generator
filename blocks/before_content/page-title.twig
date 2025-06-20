@@ -10,14 +10,14 @@ sort_order: 0
       <img loading="eager" src="{{ base_path ? '/' ~ base_path }}/images/{{ page_image }}@768x432.webp" alt="">
     </picture>
   {% endset %}
-  {% include '@psu-ooe/page-title-banner-image/page-title-banner-image.twig' with {
+  {% include '@oe/page-title-banner-image/page-title-banner-image.twig' with {
     subtitle_before: page_subtitle_before,
     title: page_title,
     subtitle_after: page_subtitle_after,
     image: image
   } only %}
 {% else %}
-  {% include '@psu-ooe/page-title-banner-plain/page-title-banner-plain.twig' with {
+  {% include '@oe/page-title-banner-plain/page-title-banner-plain.twig' with {
     subtitle_before: page_subtitle_before,
     title: page_title,
     subtitle_after: page_subtitle_after,

@@ -34,7 +34,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Authenticate with NPM registry
         run: |
-          echo "@psu-ooe:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "@oe:registry=https://npm.pkg.github.com" >> .npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
       - uses: actions/setup-node@v4
         with:

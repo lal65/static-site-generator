@@ -1,9 +1,9 @@
 {
-    "name": "psu-ooe/static-site-generator",
+    "name": "psu-online-education/static-site-generator",
     "description": "Provides a simple CMS-less site generator as a service.",
     "type": "project",
     "autoload": {
-        "psr-4": { "ooe\\": "src/" }
+        "psr-4": { "oe\\": "src/" }
     },
     "require": {
         "twig/twig": "^3.0",
