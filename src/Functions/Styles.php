@@ -48,7 +48,7 @@ class Styles {
 
     $styles = '';
     foreach (array_keys($manifests) as $manifest) {
-      $component = str_replace('@oe/', '', $manifest);
+      $component = str_replace('@psu-online-education/', '', $manifest);
       $potential_css_file = current($path) ."/$component/dist/styles.css";
       if (file_exists($potential_css_file)) {
         $file_content = trim(str_replace('/*# sourceMappingURL=styles.css.map */', '', file_get_contents($potential_css_file)));

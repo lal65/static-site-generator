@@ -48,7 +48,7 @@ class Scripts {
 
     $scripts = '';
     foreach (array_keys($manifests) as $manifest) {
-      $component = str_replace('@oe/', '', $manifest);
+      $component = str_replace('@psu-online-education/', '', $manifest);
       $potential_js_file = current($path) ."/$component/dist/scripts.js";
       if (file_exists($potential_js_file)) {
         $file_content = trim(file_get_contents($potential_js_file));
